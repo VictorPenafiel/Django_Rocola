@@ -1,0 +1,32 @@
+{% extends 'base.html' %} 
+{% block content %}
+
+<div class="tabla-datos mt-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">TrackId</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Duración [ms]</th>
+        <th scope="col">Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in tracks %}
+      <tr>
+        <th scope="row">{{item.trackid}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.milliseconds}}</td>
+        <td>
+          <form action="detalle/" method="POST">
+            {% csrf_token %}
+            <button class="btn btn-primary" type="submit" value="{{ item.trackid }}" name="detalle_id">Ver</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
