@@ -37,13 +37,13 @@
               type: "POST",
               url: '{% url "getalbums" %}',
               data: {
-                  'artistid': artistid,       // Coloque el id a consultar
+                  'artist_id': artistid,       // Coloque el id a consultar
                   'csrfmiddlewaretoken':$('input[name=csrfmiddlewaretoken]').val(),
               },
               success: function (data) {   // `data` tiene la respuesta a la consulta
                   let html_data = '<option value="">---------</option>';
                   data.forEach(function (data) {
-                      html_data += `<option value="${data.albumid}">${data.title}</option>`
+                      html_data += `<option value="${data.album_id}">${data.title}</option>`
                   });
                   $("#id_album_selector").html(html_data); // replace the contents of the topic input with the data that came from the server
               }

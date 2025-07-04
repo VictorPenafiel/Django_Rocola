@@ -21,10 +21,10 @@ def index(request):
 
 def getalbums(request):
     if request.method == "POST":
-        artist_id = request.POST['artist_id']
+        artist__id = request.POST['artist_id']
         data = {}
         try:
-            album = Album.objects.filter(artistid=artist_id)
+            album = Album.objects.filter(artist_id=artist__id)
         except Exception:
             data['error_message'] = 'error'
             return JsonResponse(data)
@@ -42,3 +42,4 @@ def detalle(request):
     datos = Track.objects.raw(query)
 
     return render(request, 'detalle.html', {'datos': datos[0]})
+

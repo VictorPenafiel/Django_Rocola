@@ -14,14 +14,14 @@
     <tbody>
       {% for item in tracks %}
       <tr>
-        <th scope="row">{{item.trackid}}</th>
+        <th scope="row">{{item.track_id}}</th>
         <td>{{item.name}}</td>
         <td>{{item.milliseconds}}</td>
         <td>
-          <form action="detalle/" method="POST">
-            {% csrf_token %}
-            <button class="btn btn-primary" type="submit" value="{{ item.trackid }}" name="detalle_id">Ver</button>
-          </form>
+            <form action="detalle/" method="POST">
+              {% csrf_token %}
+              <button class="btn btn-primary" type="submit" value="{{ item.track_id}}" name="detalle_id">Ver</button>
+            </form>
         </td>
       </tr>
       {% endfor %}
