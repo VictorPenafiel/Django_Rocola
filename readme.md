@@ -2,20 +2,13 @@
 
 ## Descripción del proyecto
 
-Aplicación web alojada en Heroku que implementa un sistema de fidelización para pacientes de un centro médico, proporcionando acceso exclusivo a beneficios mediante registro de usuario.
+Aplicación cliente para sistemas de Rocola. Permite explorar música y gestionar listas de reproducción, interactuando directamente con el backend de la Rocola. 
 
 Las tecnologías y herramientas ocupadas son las siguientes:
 - Python
 - Django
 - PostgreSQL
 - Bootstrap
-
-## Consideraciones
-
--  El sistema debe permitir registrar nuevos participantes.
--  Se debe crear una vista para que los participantes puedan iniciar sesión con su correo y contraseña.
--  Luego de iniciar la sesión, los participantes deberán poder modificar sus datos, exceptuando el correo electrónico y su foto. Esta vista esta protegida con csrf_token y los datos que se utilicen en la plantilla son extraídos del token.
--  La vista del administrador debe mostrar los participantes registrados y permitir aprobarlos para cambiar su estado.
 
 ## Instalación 🚀
 
@@ -35,7 +28,7 @@ Importar proyecto al IDE de preferencia para ejecutar.
 Para ejecutar en consola realizar el build (empaquetado) de la aplicación.
 
 ```bash
-git clone https://github.com/VictorPenafiel/Django_Deploy.git
+git clone https://github.com/VictorPenafiel/Django_Rocola.git
 cd proyecto
 python -m venv venv && source venv/bin/activate
 pip install -r requirements.txt
