@@ -30,16 +30,31 @@ def getalbums(request):
             return JsonResponse(data)
         return JsonResponse(list(album.values('album_id', 'title')), safe = False)
 
+
+
 def detalle(request):
     codigo_track = request.POST.get('detalle_id')
     print(codigo_track)
-    query = f"""
-        select "TrackId", t."Name" as cancion, t."Composer" as compositor, al."Title" as album, ar."Name" as artista  from "Track" as t
-        join "Album" as al ON al."AlbumId" = t."AlbumId"
-        join "Artist" as ar ON ar."ArtistId" = al."ArtistId"
-        where t."TrackId"= {codigo_track};
+    query = """
+        SELECT
+            T.track_id,
+            T.name AS cancion,
+            T.composer AS compositor,
+            AL.title AS album_nombre,
+            AR.name AS artista
+        FROM
+            track AS T
+        JOIN
+            album AS AL ON AL.album_id = T.album_id
+        JOIN
+            artist AS AR ON AR.artist_id = AL.artist_id
+        WHERE
+            T.track_id = %s;
     """
-    datos = Track.objects.raw(query)
+    datos = Track.objects.raw(query, [codigo_track])
 
-    return render(request, 'detalle.html', {'datos': datos[0]})
-
+    if datos:
+        return render(request, 'detalle.html', {'datos': datos[0]})
+    else:
+        return render(request, 'error.html', {'mensaje': 'El track no fue encontrado.'})
+    
